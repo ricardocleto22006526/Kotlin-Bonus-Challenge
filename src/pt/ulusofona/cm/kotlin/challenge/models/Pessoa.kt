@@ -68,6 +68,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) : Movimentavel {
         val dataNascimento = this.dataDeNascimento
 
         val diff = hoje.time - dataNascimento.time
+                            //Ano - dia - hora - min - ms
         val converterParaAnos = 365.25*24*60*60*1000
         val idade: Int = ( (diff/converterParaAnos) ).toInt()
 
