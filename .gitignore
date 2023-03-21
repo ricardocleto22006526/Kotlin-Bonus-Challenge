@@ -2,8 +2,8 @@ out/
 !/src/main//out/
 !/src/test/
 ./CmChallenge.iml/
-./out/
-./.idea/
+./out
+.idea
 ./src/main/
 /shelf/
 /workspace.xml
