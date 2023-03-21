@@ -34,8 +34,10 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) : Movimentavel {
 
     fun venderVeiculo(identificador: String, compradorDoCarro: Pessoa) {
         val veiculo = pesquisarVeiculo(identificador)
+
         compradorDoCarro.comprarVeiculo(veiculo)
         compradorDoCarro.veiculos.last().dataDeAquisicao = Date()
+
         this.veiculos -= veiculo
 
     }
@@ -44,7 +46,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) : Movimentavel {
         val veiculo = pesquisarVeiculo(identificador)
 
         if(!temCarta() && veiculo.requerCarta()) {
-            throw PessoaSemCartaException("$nome não tem carta")
+            throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
         }
 
         veiculo.moverPara(x, y)
@@ -66,8 +68,8 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) : Movimentavel {
         val dataNascimento = this.dataDeNascimento
 
         val diff = hoje.time - dataNascimento.time
-
-        val idade: Int = ((diff / 365*24*60*60*1000)).toInt()
+        val converterParaAnos = 365.25*24*60*60*1000
+        val idade: Int = ( (diff/converterParaAnos) ).toInt()
 
         if (idade < 18) {
             throw MenorDeIdadeException("$nome não tem idade para tirar a carta")
